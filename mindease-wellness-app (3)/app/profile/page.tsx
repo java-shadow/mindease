@@ -95,20 +95,20 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 py-12">
       <div className="max-w-4xl mx-auto px-4">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-slate-800 mb-2">Your Profile</h1>
-          <p className="text-slate-600">Help us personalize your mental wellness journey</p>
+        <div className="text-center mb-10">
+          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 via-purple-600 to-blue-600 mb-2">Your Profile</h1>
+          <p className="text-lg text-slate-700">Help us personalize your mental wellness journey</p>
         </div>
 
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-200 p-8">
-          <div className="space-y-8">
+        <div className="bg-white/90 rounded-3xl shadow-lg border-2 border-fuchsia-200 p-10">
+          <div className="space-y-10">
             {/* Basic Information */}
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <label htmlFor="name" className="flex items-center space-x-2 text-sm font-medium text-slate-700 mb-2">
-                  <User className="w-4 h-4" />
+                <label htmlFor="name" className="flex items-center space-x-2 text-base font-bold text-fuchsia-700 mb-2">
+                  <User className="w-5 h-5" />
                   <span>Full Name</span>
                 </label>
                 <input
@@ -116,14 +116,14 @@ export default function ProfilePage() {
                   id="name"
                   value={formData.name}
                   onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-5 py-3 border-2 border-fuchsia-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 focus:border-transparent bg-white"
                   placeholder="Enter your full name"
                 />
               </div>
 
               <div>
-                <label htmlFor="age" className="flex items-center space-x-2 text-sm font-medium text-slate-700 mb-2">
-                  <Calendar className="w-4 h-4" />
+                <label htmlFor="age" className="flex items-center space-x-2 text-base font-bold text-blue-700 mb-2">
+                  <Calendar className="w-5 h-5" />
                   <span>Age</span>
                 </label>
                 <input
@@ -131,7 +131,7 @@ export default function ProfilePage() {
                   id="age"
                   value={formData.age}
                   onChange={(e) => setFormData((prev) => ({ ...prev, age: e.target.value }))}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-5 py-3 border-2 border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent bg-white"
                   placeholder="Enter your age"
                   min="1"
                   max="120"
@@ -141,8 +141,8 @@ export default function ProfilePage() {
 
             {/* Fears Section */}
             <div>
-              <label className="flex items-center space-x-2 text-sm font-medium text-slate-700 mb-3">
-                <Heart className="w-4 h-4" />
+              <label className="flex items-center space-x-2 text-base font-bold text-red-700 mb-3">
+                <Heart className="w-5 h-5" />
                 <span>Fears & Anxieties</span>
               </label>
               <div className="space-y-3">
@@ -152,12 +152,12 @@ export default function ProfilePage() {
                     value={newFear}
                     onChange={(e) => setNewFear(e.target.value)}
                     onKeyPress={(e) => e.key === "Enter" && addItem("fears", newFear)}
-                    className="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="flex-1 px-4 py-2 border-2 border-red-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent bg-white"
                     placeholder="Add a fear or anxiety (e.g., public speaking, heights)"
                   />
                   <button
                     onClick={() => addItem("fears", newFear)}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                    className="bg-gradient-to-r from-fuchsia-600 to-red-500 text-white px-4 py-2 rounded-xl font-bold shadow hover:from-fuchsia-700 hover:to-red-600 transition-colors"
                   >
                     <Plus className="w-4 h-4" />
                   </button>
@@ -166,7 +166,7 @@ export default function ProfilePage() {
                   {formData.fears.map((fear, index) => (
                     <span
                       key={index}
-                      className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm flex items-center space-x-1"
+                      className="bg-gradient-to-r from-red-100 to-fuchsia-100 text-red-700 px-3 py-1 rounded-full text-sm flex items-center space-x-1 shadow"
                     >
                       <span>{fear}</span>
                       <button onClick={() => removeItem("fears", index)} className="text-red-500 hover:text-red-700">
@@ -180,8 +180,8 @@ export default function ProfilePage() {
 
             {/* Stress Factors Section */}
             <div>
-              <label className="flex items-center space-x-2 text-sm font-medium text-slate-700 mb-3">
-                <Zap className="w-4 h-4" />
+              <label className="flex items-center space-x-2 text-base font-bold text-orange-700 mb-3">
+                <Zap className="w-5 h-5" />
                 <span>Stress Factors</span>
               </label>
               <div className="space-y-3">
@@ -191,12 +191,12 @@ export default function ProfilePage() {
                     value={newStress}
                     onChange={(e) => setNewStress(e.target.value)}
                     onKeyPress={(e) => e.key === "Enter" && addItem("stressFactors", newStress)}
-                    className="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="flex-1 px-4 py-2 border-2 border-orange-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent bg-white"
                     placeholder="Add a stress factor (e.g., work deadlines, relationships)"
                   />
                   <button
                     onClick={() => addItem("stressFactors", newStress)}
-                    className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors"
+                    className="bg-gradient-to-r from-orange-500 to-fuchsia-500 text-white px-4 py-2 rounded-xl font-bold shadow hover:from-orange-600 hover:to-fuchsia-600 transition-colors"
                   >
                     <Plus className="w-4 h-4" />
                   </button>
@@ -205,13 +205,10 @@ export default function ProfilePage() {
                   {formData.stressFactors.map((stress, index) => (
                     <span
                       key={index}
-                      className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm flex items-center space-x-1"
+                      className="bg-gradient-to-r from-orange-100 to-fuchsia-100 text-orange-700 px-3 py-1 rounded-full text-sm flex items-center space-x-1 shadow"
                     >
                       <span>{stress}</span>
-                      <button
-                        onClick={() => removeItem("stressFactors", index)}
-                        className="text-orange-500 hover:text-orange-700"
-                      >
+                      <button onClick={() => removeItem("stressFactors", index)} className="text-orange-500 hover:text-orange-700">
                         <X className="w-3 h-3" />
                       </button>
                     </span>
@@ -222,9 +219,9 @@ export default function ProfilePage() {
 
             {/* Hobbies Section */}
             <div>
-              <label className="flex items-center space-x-2 text-sm font-medium text-slate-700 mb-3">
-                <Gamepad2 className="w-4 h-4" />
-                <span>Hobbies & Interests</span>
+              <label className="flex items-center space-x-2 text-base font-bold text-blue-700 mb-3">
+                <Gamepad2 className="w-5 h-5" />
+                <span>Hobbies</span>
               </label>
               <div className="space-y-3">
                 <div className="flex space-x-2">
@@ -233,12 +230,12 @@ export default function ProfilePage() {
                     value={newHobby}
                     onChange={(e) => setNewHobby(e.target.value)}
                     onKeyPress={(e) => e.key === "Enter" && addItem("hobbies", newHobby)}
-                    className="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Add a hobby or interest (e.g., reading, hiking, music)"
+                    className="flex-1 px-4 py-2 border-2 border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent bg-white"
+                    placeholder="Add a hobby (e.g., painting, yoga)"
                   />
                   <button
                     onClick={() => addItem("hobbies", newHobby)}
-                    className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+                    className="bg-gradient-to-r from-blue-500 to-fuchsia-500 text-white px-4 py-2 rounded-xl font-bold shadow hover:from-blue-600 hover:to-fuchsia-600 transition-colors"
                   >
                     <Plus className="w-4 h-4" />
                   </button>
@@ -247,13 +244,10 @@ export default function ProfilePage() {
                   {formData.hobbies.map((hobby, index) => (
                     <span
                       key={index}
-                      className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm flex items-center space-x-1"
+                      className="bg-gradient-to-r from-blue-100 to-fuchsia-100 text-blue-700 px-3 py-1 rounded-full text-sm flex items-center space-x-1 shadow"
                     >
                       <span>{hobby}</span>
-                      <button
-                        onClick={() => removeItem("hobbies", index)}
-                        className="text-green-500 hover:text-green-700"
-                      >
+                      <button onClick={() => removeItem("hobbies", index)} className="text-blue-500 hover:text-blue-700">
                         <X className="w-3 h-3" />
                       </button>
                     </span>
@@ -263,25 +257,21 @@ export default function ProfilePage() {
             </div>
 
             {/* Save Button */}
-            <div className="flex items-center justify-between pt-6 border-t border-slate-200">
-              {saveMessage && (
-                <div className={`text-sm ${saveMessage.includes("Error") ? "text-red-600" : "text-green-600"}`}>
-                  {saveMessage}
-                </div>
-              )}
+            <div className="flex justify-end">
               <button
                 onClick={handleSave}
                 disabled={isSaving}
-                className="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center space-x-2 ml-auto"
+                className="bg-gradient-to-r from-fuchsia-600 to-blue-600 text-white px-8 py-3 rounded-full font-semibold shadow hover:from-fuchsia-700 hover:to-blue-700 transition-colors flex items-center gap-2 disabled:opacity-50"
               >
-                {isSaving ? (
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                ) : (
-                  <Save className="w-4 h-4" />
-                )}
-                <span>{isSaving ? "Saving..." : "Save Profile"}</span>
+                <Save className="w-5 h-5" />
+                {isSaving ? "Saving..." : "Save Profile"}
               </button>
             </div>
+            {saveMessage && (
+              <div className="text-center mt-4">
+                <span className="text-lg font-bold text-fuchsia-700">{saveMessage}</span>
+              </div>
+            )}
           </div>
         </div>
 

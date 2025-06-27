@@ -65,21 +65,21 @@ export default function MoodPage() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-blue-50 py-8">
+      <div className="min-h-screen bg-gradient-to-br from-yellow-200 via-pink-200 to-blue-200 py-12">
         <div className="max-w-2xl mx-auto px-4">
-          <div className="text-center mb-8">
-            <TrendingUp className="w-12 h-12 text-blue-500 mx-auto mb-3" />
-            <h1 className="text-3xl font-bold text-slate-800 mb-2">Mood Tracker</h1>
-            <p className="text-slate-600">How are you feeling today? Track your mood and get helpful suggestions.</p>
+          <div className="text-center mb-10">
+            <TrendingUp className="w-14 h-14 text-fuchsia-600 mx-auto mb-4" />
+            <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 via-purple-600 to-blue-600 mb-2">Mood Tracker</h1>
+            <p className="text-lg text-slate-700">How are you feeling today? Track your mood and get helpful suggestions.</p>
           </div>
 
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-slate-200 p-8 mb-8">
-            <div className="mb-4 text-lg font-medium text-slate-700">Select your current mood:</div>
-            <div className="flex justify-between mb-4">
+          <div className="bg-white/90 rounded-3xl shadow-lg border-2 border-fuchsia-200 p-10 mb-10">
+            <div className="mb-4 text-lg font-bold text-fuchsia-700">Select your current mood:</div>
+            <div className="flex justify-between mb-6">
               {moods.map((m) => (
                 <button
                   key={m.value}
-                  className={`flex flex-col items-center px-2 py-1 rounded-lg border-2 transition-all ${selectedMood === m.value ? "border-blue-500 bg-blue-50" : "border-transparent"}`}
+                  className={`flex flex-col items-center px-3 py-2 rounded-xl border-2 transition-all text-base font-semibold shadow-lg ${selectedMood === m.value ? "border-fuchsia-500 bg-fuchsia-50 scale-110" : "border-transparent bg-white hover:bg-fuchsia-50"}`}
                   onClick={() => setSelectedMood(m.value)}
                   type="button"
                 >
@@ -89,7 +89,7 @@ export default function MoodPage() {
               ))}
             </div>
             <textarea
-              className="w-full h-20 p-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-slate-700 mb-4"
+              className="w-full h-20 p-3 border-2 border-fuchsia-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 focus:border-transparent resize-none text-slate-700 mb-4 bg-white"
               placeholder="Add a note (optional)"
               value={note}
               onChange={e => setNote(e.target.value)}
@@ -98,29 +98,29 @@ export default function MoodPage() {
             <button
               onClick={handleSave}
               disabled={selectedMood === null || isSaving}
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="bg-gradient-to-r from-fuchsia-600 to-blue-600 text-white px-8 py-3 rounded-full font-semibold shadow hover:from-fuchsia-700 hover:to-blue-700 transition-colors"
             >
               {isSaving ? "Saving..." : "Save Mood"}
             </button>
           </div>
 
-          <div className="mb-8 flex items-center bg-yellow-50 border border-yellow-200 rounded-xl p-4">
-            <Lightbulb className="w-6 h-6 text-yellow-600 mr-2" />
+          <div className="mb-10 flex items-center bg-gradient-to-r from-yellow-100 via-pink-100 to-blue-100 border border-yellow-200 rounded-xl p-5 shadow">
+            <Lightbulb className="w-7 h-7 text-yellow-600 mr-3" />
             <div>
-              <div className="font-semibold text-slate-800 mb-1">Suggestion</div>
+              <div className="font-bold text-fuchsia-700 mb-1">Suggestion</div>
               <div className="text-slate-700">{suggestion}</div>
             </div>
           </div>
 
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-slate-200 p-6">
-            <h2 className="text-xl font-bold text-slate-800 mb-4">Recent Moods</h2>
+          <div className="bg-white/90 rounded-3xl shadow-lg border-2 border-blue-200 p-8">
+            <h2 className="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 via-purple-600 to-blue-600 mb-4">Recent Moods</h2>
             {history.length === 0 && <div className="text-slate-500 italic">No moods tracked yet. Start today!</div>}
             <ul className="space-y-4">
               {history.map((m, i) => (
-                <li key={i} className="p-4 bg-slate-50 rounded-lg border border-slate-100 flex items-center justify-between">
+                <li key={i} className="p-4 bg-blue-50 rounded-lg border border-blue-100 flex items-center justify-between shadow">
                   <div>
                     <div className="text-xs text-slate-500 mb-1">{formatDate(m.createdAt)}</div>
-                    <div className="text-slate-700">Mood: <span className="font-semibold">{m.mood}</span></div>
+                    <div className="text-slate-700">Mood: <span className="font-bold text-fuchsia-700">{m.mood}</span></div>
                     {m.notes && <div className="text-slate-600 text-sm mt-1">Note: {m.notes}</div>}
                   </div>
                 </li>

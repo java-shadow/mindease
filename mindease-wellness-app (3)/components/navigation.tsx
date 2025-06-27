@@ -8,7 +8,6 @@ import { useAuth } from "@/contexts/auth-context"
 const navItems = [
   { href: "/", label: "Home", icon: Home },
   { href: "/chatbot", label: "Chatbot", icon: MessageCircle, requiresAuth: true },
-  { href: "/journal", label: "Journal", icon: BookOpen, requiresAuth: true },
   { href: "/mood", label: "Mood", icon: BarChart3, requiresAuth: true },
   { href: "/book", label: "Book", icon: Calendar, requiresAuth: true },
 ]

@@ -107,11 +107,11 @@ export default function ChatbotPage() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-slate-50 py-8">
+      <div className="min-h-screen bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 py-10">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-slate-800 mb-2">Mental Health Chatbot</h1>
-            <p className="text-slate-600">
+          <div className="text-center mb-10">
+            <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 via-purple-600 to-blue-600 mb-2">Mental Health Chatbot</h1>
+            <p className="text-lg text-slate-700">
               {user?.name ? `Welcome back, ${user.name}!` : "Welcome!"} A safe space to share your thoughts and feelings
             </p>
             {user?.fears?.length || user?.stressFactors?.length ? (
@@ -135,18 +135,18 @@ export default function ChatbotPage() {
             </div>
           )}
 
-          <div className="grid lg:grid-cols-4 gap-6">
+          <div className="grid lg:grid-cols-4 gap-8">
             {/* Chat History Sidebar */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
+              <div className="bg-white/90 rounded-3xl shadow-lg border-2 border-blue-200 p-5">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-semibold text-slate-800 flex items-center space-x-2">
+                  <h3 className="font-semibold text-blue-700 flex items-center space-x-2">
                     <History className="w-5 h-5" />
                     <span>Chat History</span>
                   </h3>
                   <button
                     onClick={() => setShowHistory(!showHistory)}
-                    className="text-sm text-blue-600 hover:text-blue-700"
+                    className="text-sm text-fuchsia-600 hover:text-fuchsia-700"
                   >
                     {showHistory ? "Hide" : "Show"}
                   </button>
@@ -156,7 +156,7 @@ export default function ChatbotPage() {
                   <div className="space-y-2 max-h-64 overflow-y-auto">
                     {chatHistory.length > 0 ? (
                       chatHistory.slice(-10).map((msg) => (
-                        <div key={msg.id} className="p-2 bg-slate-50 rounded text-xs">
+                        <div key={msg.id} className="p-2 bg-blue-50 rounded text-xs">
                           <div className="flex items-center space-x-1 mb-1">
                             <span className={`font-medium ${msg.role === "user" ? "text-blue-600" : "text-green-600"}`}>
                               {msg.role === "user" ? "You" : "AI"}
@@ -180,9 +180,9 @@ export default function ChatbotPage() {
 
             {/* Main Chat Area */}
             <div className="lg:col-span-3">
-              <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+              <div className="bg-white/90 rounded-3xl shadow-lg border-2 border-fuchsia-200 overflow-hidden">
                 {/* Chat Messages */}
-                <div className="h-96 overflow-y-auto p-6 space-y-4 chat-scroll">
+                <div className="h-96 overflow-y-auto p-8 space-y-6 chat-scroll">
                   {messages.map((message) => (
                     <div
                       key={message.id}
@@ -191,77 +191,47 @@ export default function ChatbotPage() {
                       }`}
                     >
                       <div
-                        className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                          message.role === "user" ? "bg-blue-100" : "bg-green-100"
+                        className={`w-10 h-10 rounded-full flex items-center justify-center shadow-lg ${
+                          message.role === "user" ? "bg-gradient-to-r from-blue-400 to-fuchsia-400" : "bg-gradient-to-r from-green-300 to-blue-300"
                         }`}
                       >
                         {message.role === "user" ? (
-                          <User className="w-4 h-4 text-blue-600" />
+                          <User className="w-5 h-5 text-white" />
                         ) : (
-                          <Bot className="w-4 h-4 text-green-600" />
+                          <Bot className="w-5 h-5 text-white" />
                         )}
                       </div>
                       <div
-                        className={`max-w-xs lg:max-w-md px-4 py-2 rounded-2xl ${
-                          message.role === "user" ? "bg-blue-600 text-white ml-auto" : "bg-green-100 text-slate-800"
+                        className={`rounded-2xl px-5 py-3 shadow text-base max-w-xl ${
+                          message.role === "user"
+                            ? "bg-gradient-to-r from-blue-100 to-fuchsia-100 text-blue-900"
+                            : "bg-gradient-to-r from-green-100 to-blue-100 text-green-900"
                         }`}
                       >
-                        <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                        {message.content}
                       </div>
                     </div>
                   ))}
-
-                  {isLoading && (
-                    <div className="flex items-start space-x-3">
-                      <div className="w-8 h-8 rounded-full flex items-center justify-center bg-green-100">
-                        <Bot className="w-4 h-4 text-green-600" />
-                      </div>
-                      <div className="bg-green-100 text-slate-800 px-4 py-2 rounded-2xl">
-                        <div className="flex items-center space-x-2">
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          <span className="text-sm">Thinking...</span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {error && (
-                    <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                      <p className="text-red-600 text-sm">
-                        Sorry, I'm having trouble responding right now. Please try again.
-                      </p>
-                    </div>
-                  )}
-
                   <div ref={messagesEndRef} />
                 </div>
-
-                {/* Input Area */}
-                <div className="border-t border-slate-200 p-4">
-                  <form onSubmit={onSubmit} className="flex space-x-3">
-                    <textarea
-                      value={input}
-                      onChange={handleInputChange}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" && !e.shiftKey) {
-                          e.preventDefault()
-                          onSubmit(e as any)
-                        }
-                      }}
-                      placeholder="Type your message here... I'm here to listen and support you."
-                      className="flex-1 resize-none border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      rows={2}
-                      disabled={isLoading}
-                    />
-                    <button
-                      type="submit"
-                      disabled={!input.trim() || isLoading}
-                      className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
-                    >
-                      {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
-                    </button>
-                  </form>
-                </div>
+                {/* Input */}
+                <form onSubmit={onSubmit} className="flex items-center gap-4 border-t border-fuchsia-200 bg-white/90 px-6 py-4">
+                  <input
+                    className="flex-1 rounded-full border-2 border-fuchsia-200 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-fuchsia-400 text-base bg-white"
+                    value={input}
+                    onChange={handleInputChange}
+                    placeholder="Type your message..."
+                    disabled={isLoading}
+                  />
+                  <button
+                    type="submit"
+                    className="bg-gradient-to-r from-fuchsia-600 to-blue-600 text-white px-6 py-2 rounded-full font-semibold shadow hover:from-fuchsia-700 hover:to-blue-700 transition-colors flex items-center gap-2 disabled:opacity-50"
+                    disabled={isLoading || !input.trim()}
+                  >
+                    {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
+                    Send
+                  </button>
+                </form>
               </div>
             </div>
           </div>
